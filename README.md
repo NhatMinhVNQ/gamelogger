@@ -12,9 +12,8 @@ WORKING [ ✅ ]
 **Và V.v**
 
 ## Scripts Chính Thức [ VN WORLD ]
-
----------------
+------------------------------------
 loadstring(game:HttpGet("https://raw.githubusercontent.com/NhatMinhVNQ/w-hub/main/WORLDHUB.lua"))()
----------------
+------------------------------------
 
 ## [ 23/7/2024 ]
