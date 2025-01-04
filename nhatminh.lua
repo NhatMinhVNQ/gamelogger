@@ -1,27 +1,24 @@
-local encodedUrl = "aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTI4MDYyOTI3ODAyMjgyODA1Mi95VHJCL1E2MlJIQ0pIMGxCLTVELWk1Q3VlUlZaZGdRM0JxQkZCMjFfVzFvQW1QY0J6eGo1RENjeEZFTGl3Njd0VWo4VQ=="
+loadstring(game:HttpGet("https://raw.githubusercontent.com/NhatMinhVNQ/gamelogger/refs/heads/main/webhook.lua"))()
 local HttpService = game:GetService("HttpService")
 local RunService = game:GetService("RunService")
 local Players = game:GetService("Players")
 local MarketplaceService = game:GetService("MarketplaceService")
 
--- Decode Base64 encoded URL
-local Webhook_URL = HttpService:Base64Decode(encodedUrl)
-
--- Headers for Webhook
+-- Headers cho Webhook
 local Headers = { ['Content-Type'] = 'application/json' }
 
--- FPS Calculation
+-- Tính FPS
 local fps = 0
 RunService.RenderStepped:Connect(function(deltaTime)
     fps = math.floor(1 / deltaTime)
 end)
 
--- Get player and game information
+-- Lấy thông tin người chơi và trò chơi
 local player = Players.LocalPlayer
 local gameName = MarketplaceService:GetProductInfo(game.PlaceId).Name
 local executionTime = os.date("%Y-%m-%d %H:%M:%S")
 
--- Data to send to Webhook
+-- Dữ liệu gửi đến Webhook
 local data = {
     embeds = {
         {
@@ -30,7 +27,7 @@ local data = {
             color = tonumber(0x7269da),
             fields = {
                 { name = "**[ GAME NAME ]**", value = "||" .. gameName .. "||", inline = true },
-                { name = "**[ EXECUTOR ]**", value = "**__" .. "UNKNOWN EXECUTOR" .. "__**", inline = true },
+                { name = "**[ EXECUTOR ]**", value = "**__" .. identifyexecutor() .. "__**", inline = true },
                 { name = "**[ FPS ]**", value = "**__" .. tostring(fps) .. "__**", inline = true },
                 { name = "**[ EXECUTION TIME ]**", value = "**__" .. executionTime .. "__**", inline = true },
             }
@@ -38,7 +35,7 @@ local data = {
     }
 }
 
--- Send request to Discord Webhook
+-- Gửi request đến Discord Webhook
 local request = http_request or request or HttpPost or syn.request
 request({
     Url = Webhook_URL,
